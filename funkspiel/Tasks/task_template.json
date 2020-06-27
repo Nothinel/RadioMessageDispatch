@@ -1,0 +1,5 @@
+{
+"type" : "Send/Get/Emergency",
+"assignment" : "This is your info on this task",
+"solution" : "This is the expected result/solution"
+}
