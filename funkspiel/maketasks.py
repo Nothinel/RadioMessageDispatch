@@ -58,4 +58,4 @@ def make_tasks(number_of_players, number_of_tasks_per_player, max_task_length=10
     return tasks_list
 
 
-make_tasks(2, 20)
+make_tasks(3, 20)

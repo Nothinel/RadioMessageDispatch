@@ -20,10 +20,19 @@ def read_tasks(folder):
             list_tasks.append(task)
     return list_tasks
     
+def player_tasks2latex_str(player):
+    latex_str = ""
+    #print(player.tasks)
+    for task in player.tasks:
+        #print(task)
+        latex_str += f"\\subsection{{{task['task_id']}}}\n"
+        latex_str += f"\\textbf{{Aufgabenstellung}}: "
+    return latex_str
+    
 
 #create a few global parameters, to be set before creating a game
-number_of_players = 2
-number_of_tasks_per_player = 2
+number_of_players = 3
+number_of_tasks_per_player = 20
 
 #organize some things or create data structures according to the parameters set above
 list_players = []
@@ -41,13 +50,18 @@ list_tasks = read_tasks(tasks_folder)
 #randomly assign the tasks to players
 list_tasks = random.sample(list_tasks, number_of_tasks)
 random.shuffle(list_tasks)
-print(list_tasks)
+#list_tasks = list(range(0,len(list_tasks)))
+#print(list_tasks)
 for player in list_players:
-    print(list_tasks[player.number*number_of_tasks:(player.number+1)*number_of_tasks-1])
-    player.tasks.append(list_tasks[player.number*number_of_tasks:(player.number+1)*number_of_tasks-1])
+    start = player.number*number_of_tasks_per_player
+    stopp = (player.number+1)*number_of_tasks_per_player 
+    #print(f"{start}   {stopp}")
+    #print(list_tasks[start:stopp])
+    player.tasks += list_tasks[start:stopp]
     
 for player in list_players:
-    print(f"{player.tasks}")
+    print(player_tasks2latex_str(player))
+    #print(f"{player.tasks}")
 
 #with open("doc_template.tex", "r") as f:
     #full_string = f.read()
