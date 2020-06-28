@@ -1,5 +1,7 @@
 {
-"type" : "Send/Get/Emergency",
+"task_type" : "Send/Get/Emergency",
+"contact_player" : "random", 
 "assignment" : "This is your info on this task",
-"solution" : "This is the expected result/solution"
+"solution" : "This is the expected result orsolution",
+"advancement_rule" : "Roll dice until you get a 6"
 }
