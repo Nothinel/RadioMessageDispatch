@@ -17,6 +17,10 @@ def create_send_task(max_task_length, number_of_players, task={}):
         random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=max_task_length))
     if "contact_player" not in task:
         task["contact_player"] = "random"
+    if "assignment" not in task:
+        task["assignment"] =  (
+        "Contact <contact_player> and send the following information: "
+        )
     return task
 
 def create_get_task(max_task_length, number_of_players, task={}):
@@ -26,6 +30,10 @@ def create_get_task(max_task_length, number_of_players, task={}):
         random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=max_task_length))
     if "contact_player" not in task:
         task["contact_player"] = "random"
+    if "assignment" not in task:
+        task["assignment"] =  (
+        "Contact <contact_player> and get the Information associated with the ID of this task."
+        )
     return task
 
 
