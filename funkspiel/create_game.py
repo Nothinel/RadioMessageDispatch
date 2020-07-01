@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/usr/bin/python3
 
 """
 This will create a set of documents for playing my funkspiel, one for each
@@ -25,8 +25,9 @@ def player_tasks2latex_str(player):
     #print(player.tasks)
     for task in player.tasks:
         #print(task)
-        latex_str += f"\\subsection{{{task['task_id']}}}\n"
+        latex_str += f"\\subsection{{Task: {task['task_id']}}}\n"
         latex_str += f"\\textbf{{Aufgabenstellung}}: "
+        latex_str += f""
     return latex_str
     
 

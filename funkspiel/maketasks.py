@@ -1,4 +1,4 @@
-#!/bin/python
+#!/usr/bin/python3
 
 import json
 import random
@@ -10,11 +10,29 @@ propability = {}
 propability["Emergency"] = 1
 propability["Get"] = 49
 propability["Send"] = 50
+def create_send_task(max_task_length, number_of_players, task={}):
+    task["task_type"] = "Send"
+    if "solution" not in task:
+        task["solution"] = "".join(
+        random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=max_task_length))
+    if "contact_player" not in task:
+        task["contact_player"] = "random"
+    return task
+
+def create_get_task(max_task_length, number_of_players, task={}):
+    task["task_type"] = "Get"
+    if "solution" not in task:
+        task["solution"] = "".join(
+        random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=max_task_length))
+    if "contact_player" not in task:
+        task["contact_player"] = "random"
+    return task
+
 
 
 def single_task(max_task_length, number_of_players, **task_values):
     """
-    create a single task of any type
+    create a single task. type is randomly chosen, if not specified in the task_values
     """
     task = dict(**task_values)
     with open("Tasks/task_template.json") as f:
@@ -26,8 +44,10 @@ def single_task(max_task_length, number_of_players, **task_values):
     #In case of emergency make the solution just a number based on 6 (highest number on standard dice) and the number of players
     if task["task_type"] == "Emergency":
         task["solution"] = random.randint(1, 6*number_of_players)
-    else:
-        task["solution"] = "".join(random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=max_task_length))
+    elif task["task_type"] == "Send":
+        task = create_send_task(max_task_length, number_of_players, task)
+    elif task["task_type"] == "Get":
+        task = create_get_task(max_task_length, number_of_players, task)
 
     #print(task)
     return task
