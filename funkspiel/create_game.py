@@ -27,7 +27,7 @@ def player_tasks2latex_str(player):
         #print(task)
         latex_str += f"\\subsection{{TaskID: {task['task_id']}}}\n"
         latex_str += f"\\textbf{{Aufgabenstellung}}: "
-        latex_str += f""
+        latex_str += f"{task['assignment']}"
     return latex_str
     
 

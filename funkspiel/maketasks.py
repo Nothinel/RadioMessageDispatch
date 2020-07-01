@@ -29,13 +29,28 @@ def create_get_task(max_task_length, number_of_players, task={}):
         task["solution"] = "".join(
         random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=max_task_length))
     if "contact_player" not in task:
-        task["contact_player"] = "random"
+        task["contact_player"] = "all"
     if "assignment" not in task:
         task["assignment"] =  (
         "Contact <contact_player> and get the Information associated with the ID of this task."
         )
     return task
 
+
+def create_emergency_task(max_task_length, number_of_players, task={}):
+    task["task_type"] = "Emergency"
+    if "solution" not in task:
+        task["solution"] = random.randint(1, 6*number_of_players)
+    if "contact_player" not in task:
+        task["contact_player"] = "random"
+    if "assignment" not in task:
+        task["assignment"] =  (
+        "This is a simulated emergency task. In all communication, make sure to always use the term "
+        +"'simmulated emergency' to make sure this is not a real emergency. Do now start your stopwatch." 
+        +"Once it is started you need to declare the simmulated emergency on your communications channel"
+        +"and ask other players for emergency ressources."
+        )
+    return task
 
 
 def single_task(max_task_length, number_of_players, **task_values):
@@ -51,7 +66,7 @@ def single_task(max_task_length, number_of_players, **task_values):
         task["task_type"] = random.choices(task_template["task_type"].split("/"))[0]
     #In case of emergency make the solution just a number based on 6 (highest number on standard dice) and the number of players
     if task["task_type"] == "Emergency":
-        task["solution"] = random.randint(1, 6*number_of_players)
+        task = create_emergency_task(max_task_length, number_of_players, task)
     elif task["task_type"] == "Send":
         task = create_send_task(max_task_length, number_of_players, task)
     elif task["task_type"] == "Get":
