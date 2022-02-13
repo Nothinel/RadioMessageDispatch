@@ -1,1 +1,1 @@
-{"task_type": "Send", "solution": "ek7LLbpJkb", "contact_player": "random", "assignment": "Contact <contact_player> and send the following information: ", "task_id": 29}
+{"task_type": "Get", "solution": "oBg2X5BcqJ", "contact_player": "all", "assignment": "Contact {cp} and get the Information associated with the ID of this task.", "task_id": 29}

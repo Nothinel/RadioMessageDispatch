@@ -53,17 +53,28 @@ list_tasks = random.sample(list_tasks, number_of_tasks)
 random.shuffle(list_tasks)
 #list_tasks = list(range(0,len(list_tasks)))
 #print(list_tasks)
+with open("doc_template/doc_template.tex", "r") as f:
+    full_string = f.read()
+print(full_string)
+
 for player in list_players:
     start = player.number*number_of_tasks_per_player
     stopp = (player.number+1)*number_of_tasks_per_player 
     #print(f"{start}   {stopp}")
     #print(list_tasks[start:stopp])
     player.tasks += list_tasks[start:stopp]
+    player.tex_str = full_string
+    player.tex_str = player.tex_str.replace("SSS", str(player.number))
+    player.tex_str = player.tex_str.replace("CCC",
+            player_tasks2latex_str(player))
+    with open(f"TEST/{player.number}.tex", "w") as f:
+        f.write(player.tex_str)
+    #print(player.tex_str)
     
-for player in list_players:
-    print(player_tasks2latex_str(player))
+    
+#for player in list_players:
+#    print(player_tasks2latex_str(player))
     #print(f"{player.tasks}")
 
-#with open("doc_template.tex", "r") as f:
-    #full_string = f.read()
-#print(full_string)
+
+

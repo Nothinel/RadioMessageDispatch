@@ -18,8 +18,9 @@ def create_send_task(max_task_length, number_of_players, task={}):
     if "contact_player" not in task:
         task["contact_player"] = "random"
     if "assignment" not in task:
+        cp = task['contact_player']
         task["assignment"] =  (
-        "Contact <contact_player> and send the following information: "
+        f"Contact {cp} and send the following information: "
         )
     return task
 
@@ -31,8 +32,9 @@ def create_get_task(max_task_length, number_of_players, task={}):
     if "contact_player" not in task:
         task["contact_player"] = "all"
     if "assignment" not in task:
+        cp = task['contact_player']
         task["assignment"] =  (
-        "Contact <contact_player> and get the Information associated with the ID of this task."
+        f"Contact {cp} and get the Information associated with the ID of this task."
         )
     return task
 
